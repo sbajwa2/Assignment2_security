@@ -1,0 +1,22 @@
+name: Bandit Security Scan
+
+on:
+  push:
+    paths:
+      - '**.py'
+  pull_request:
+    paths:
+      - '**.py'
+  workflow_dispatch:
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Bandit
+        uses: tj-actions/bandit@v6
+        with:
+          targets: "./"
